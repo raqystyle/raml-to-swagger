@@ -6,6 +6,7 @@ var _ = require('lodash');
 var jsonCompat = require('json-schema-compatibility');
 var HttpStatus = require('http-status-codes').getStatusText;
 var jp = require('jsonpath');
+var H = require('./helper');
 
 exports.convert = function (raml) {
   //FIXME:
@@ -344,17 +345,17 @@ function parseBody(ramlBody, srMethod) {
   });
 }
 
-function convertSchema(schema) {
-  if (_.isUndefined(schema))
+function convertSchema(rawSchema) {
+  if (_.isUndefined(rawSchema))
     return;
 
-  assert(_.isString(schema));
+  assert(_.isString(rawSchema));
 
   try {
-    var schema = JSON.parse(schema);
+    var schema = JSON.parse(rawSchema);
   }
   catch (e) {
-    return undefined;
+    throw new Error(H.showFancySyntaxException(rawSchema, e));
   }
 
   delete schema.id;

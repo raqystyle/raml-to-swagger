@@ -3,6 +3,9 @@
   "version": "1.1.0",
   "description": "Script for converting RAML format into Swagger 2.0",
   "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/APIs-guru/raml-to-swagger.git"
@@ -27,5 +30,8 @@
     "jsonpath": "^0.2.5",
     "lodash": "^4.1.0",
     "urijs": "^1.17.0"
+  },
+  "devDependencies": {
+    "jest": "^22.4.2"
   }
 }
