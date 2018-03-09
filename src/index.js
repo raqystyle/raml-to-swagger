@@ -351,12 +351,7 @@ function convertSchema(rawSchema) {
 
   assert(_.isString(rawSchema));
 
-  try {
-    var schema = JSON.parse(rawSchema);
-  }
-  catch (e) {
-    throw new Error(H.showFancySyntaxException(rawSchema, e));
-  }
+  var schema = H.safeJsonParse(rawSchema);
 
   delete schema.id;
   delete schema.$schema;

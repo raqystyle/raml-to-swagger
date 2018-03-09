@@ -25,9 +25,19 @@ function showFancySyntaxException(rawJson, e) {
   ].join('\n');
 }
 
+function safeJsonParse(raw) {
+  try {
+    return JSON.parse(raw);
+  }
+  catch (e) {
+    throw new Error(H.showFancySyntaxException(raw, e));
+  }
+}
+
 module.exports = {
   showFancySyntaxException: showFancySyntaxException,
   mkArray: mkArray,
   extractErrorPositionFromErrorMsg: extractErrorPositionFromErrorMsg,
-  extractErrorPlace: extractErrorPlace
+  extractErrorPlace: extractErrorPlace,
+  safeJsonParse: safeJsonParse
 }
