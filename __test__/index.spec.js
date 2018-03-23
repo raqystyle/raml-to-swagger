@@ -19,10 +19,8 @@ describe('converting', () => {
       ramlToSwagger.convert(testData);
     }).toThrowError([
       'Unexpected string in JSON at position 16',
-      [
-        '{"some": "json" "that-is": "wrong"}',
-        '---------------^'
-      ].join('\n')
+      '1: {"some": "json" "that-is": "wrong"}',
+      '------------------^'
     ].join('\n'));
   });
 });

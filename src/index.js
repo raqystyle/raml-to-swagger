@@ -6,7 +6,7 @@ var _ = require('lodash');
 var jsonCompat = require('json-schema-compatibility');
 var HttpStatus = require('http-status-codes').getStatusText;
 var jp = require('jsonpath');
-var H = require('./helper');
+var bemfjp = require('better-error-message-for-json-parse');
 
 exports.convert = function (raml) {
   //FIXME:
@@ -351,7 +351,12 @@ function convertSchema(rawSchema) {
 
   assert(_.isString(rawSchema));
 
-  var schema = H.safeJsonParse(rawSchema);
+  var schema = null;
+  try {
+    schema = bemfjp.safeJsonParse(rawSchema);
+  } catch (e) {
+    throw e;
+  }
 
   delete schema.id;
   delete schema.$schema;
