@@ -351,12 +351,7 @@ function convertSchema(rawSchema) {
 
   assert(_.isString(rawSchema));
 
-  var schema = null;
-  try {
-    schema = bemfjp.safeJsonParse(rawSchema);
-  } catch (e) {
-    throw e;
-  }
+  var schema = bemfjp.safeJsonParse(rawSchema);
 
   delete schema.id;
   delete schema.$schema;
